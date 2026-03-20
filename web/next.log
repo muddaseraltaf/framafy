@@ -1,0 +1,148 @@
+
+> web@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.0 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.70.113:3000
+✓ Ready in 249ms
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /Users/muddaseraltaf/Muddaser/Projects/antigravity/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /Users/muddaseraltaf/Muddaser/Projects/antigravity/photo project/photo-puzzle-mvp/web/package-lock.json
+
+
+ GET / 200 in 3.0s (next.js: 2.9s, application-code: 102ms)
+ GET /create 200 in 209ms (next.js: 194ms, application-code: 15ms)
+ GET /create 200 in 72ms (next.js: 13ms, application-code: 59ms)
+ GET / 200 in 17ms (next.js: 4ms, application-code: 13ms)
+ GET /create 200 in 20ms (next.js: 6ms, application-code: 14ms)
+ GET / 200 in 23ms (next.js: 7ms, application-code: 16ms)
+ GET /create 200 in 18ms (next.js: 7ms, application-code: 11ms)
+ GET / 200 in 22ms (next.js: 7ms, application-code: 16ms)
+ GET / 200 in 32ms (next.js: 4ms, application-code: 27ms)
+ GET /create 200 in 18ms (next.js: 7ms, application-code: 11ms)
+ GET /result/13984017-d505-44d8-a7dc-2b6237fc8ddd 200 in 498ms (next.js: 483ms, application-code: 15ms)
+ GET / 200 in 44ms (next.js: 11ms, application-code: 32ms)
+ GET /create 200 in 46ms (next.js: 16ms, application-code: 30ms)
+ GET /result/d54e4639-b9d7-4a7d-af9e-2fefa8b942c4 200 in 14ms (next.js: 4ms, application-code: 10ms)
+ GET / 200 in 21ms (next.js: 7ms, application-code: 14ms)
+ GET /create 200 in 14ms (next.js: 5ms, application-code: 10ms)
+ GET /result/668807db-87ef-4e4f-9be5-c49861a734fc 200 in 18ms (next.js: 6ms, application-code: 12ms)
+ GET / 200 in 27ms (next.js: 9ms, application-code: 18ms)
+ GET /create 200 in 16ms (next.js: 4ms, application-code: 11ms)
+ GET /result/cd1d7d37-499a-4cda-8f45-9cdd3c4f0b06 200 in 14ms (next.js: 4ms, application-code: 10ms)
+ GET / 200 in 22ms (next.js: 8ms, application-code: 14ms)
+ GET /create 200 in 16ms (next.js: 5ms, application-code: 11ms)
+ GET /result/b6e51b62-011f-49f6-8dad-0bacc6e43248 200 in 13ms (next.js: 4ms, application-code: 9ms)
+ GET /result/014a987c-2b46-4419-a843-bacf800f24de 200 in 11ms (next.js: 3ms, application-code: 8ms)
+ GET / 200 in 20ms (next.js: 6ms, application-code: 14ms)
+ GET /create 200 in 16ms (next.js: 5ms, application-code: 11ms)
+ GET /result/66ea9d58-271b-4e14-8f52-08308aaa8cf5 200 in 13ms (next.js: 5ms, application-code: 9ms)
+ GET / 200 in 21ms (next.js: 7ms, application-code: 14ms)
+ GET /create 200 in 14ms (next.js: 5ms, application-code: 10ms)
+ GET /result/0c744017-bffe-4782-8547-7a3b38fd83e4 200 in 14ms (next.js: 4ms, application-code: 10ms)
+ GET / 200 in 21ms (next.js: 7ms, application-code: 13ms)
+ GET /create 200 in 16ms (next.js: 6ms, application-code: 10ms)
+ GET /result/94220492-23ea-4f1c-b8b2-9650c423f8fe 200 in 17ms (next.js: 5ms, application-code: 13ms)
+ GET / 200 in 17ms (next.js: 4ms, application-code: 13ms)
+ GET /create 200 in 13ms (next.js: 4ms, application-code: 10ms)
+ GET /result/f3c7fd16-4679-4a06-a725-5e7700741eb0 200 in 19ms (next.js: 7ms, application-code: 12ms)
+✓ Compiled in 105ms
+ GET / 200 in 21ms (next.js: 7ms, application-code: 15ms)
+ GET /create 200 in 14ms (next.js: 4ms, application-code: 10ms)
+ GET /result/56a9dd5c-67a3-4f07-b05b-83c24f6b791a 200 in 18ms (next.js: 8ms, application-code: 10ms)
+ GET / 200 in 43ms (next.js: 9ms, application-code: 34ms)
+ GET /create 200 in 11ms (next.js: 3ms, application-code: 8ms)
+ GET /create 200 in 35ms (next.js: 8ms, application-code: 27ms)
+ GET /result/44241d22-5f19-40e1-a2fd-72420d724fda 200 in 14ms (next.js: 6ms, application-code: 9ms)
+✓ Compiled in 80ms
+ GET /result/44241d22-5f19-40e1-a2fd-72420d724fda 200 in 117ms (next.js: 11ms, application-code: 106ms)
+ GET /result/13984017-d505-44d8-a7dc-2b6237fc8ddd 200 in 98ms (next.js: 3ms, application-code: 95ms)
+ GET /result/13984017-d505-44d8-a7dc-2b6237fc8ddd 200 in 99ms (next.js: 21ms, application-code: 78ms)
+ GET /result/13984017-d505-44d8-a7dc-2b6237fc8ddd 200 in 81ms (next.js: 26ms, application-code: 55ms)
+ GET /result/44241d22-5f19-40e1-a2fd-72420d724fda 200 in 47ms (next.js: 1677µs, application-code: 45ms)
+ GET /result/44241d22-5f19-40e1-a2fd-72420d724fda 200 in 33ms (next.js: 3ms, application-code: 30ms)
+✓ Compiled in 51ms
+ GET /result/13984017-d505-44d8-a7dc-2b6237fc8ddd 200 in 179ms (next.js: 114ms, application-code: 65ms)
+ GET /result/44241d22-5f19-40e1-a2fd-72420d724fda 200 in 180ms (next.js: 41ms, application-code: 139ms)
+ GET /result/13984017-d505-44d8-a7dc-2b6237fc8ddd 200 in 67ms (next.js: 4ms, application-code: 62ms)
+ GET /result/13984017-d505-44d8-a7dc-2b6237fc8ddd 200 in 38ms (next.js: 1929µs, application-code: 36ms)
+ GET /result/44241d22-5f19-40e1-a2fd-72420d724fda 200 in 30ms (next.js: 1016µs, application-code: 29ms)
+ GET /result/44241d22-5f19-40e1-a2fd-72420d724fda 200 in 21ms (next.js: 5ms, application-code: 17ms)
+ GET /result/44241d22-5f19-40e1-a2fd-72420d724fda 200 in 257ms (next.js: 116ms, application-code: 141ms)
+ GET /result/13984017-d505-44d8-a7dc-2b6237fc8ddd 200 in 236ms (next.js: 155ms, application-code: 81ms)
+ GET /result/13984017-d505-44d8-a7dc-2b6237fc8ddd 200 in 252ms (next.js: 183ms, application-code: 68ms)
+ GET /result/13984017-d505-44d8-a7dc-2b6237fc8ddd 200 in 237ms (next.js: 143ms, application-code: 95ms)
+ GET /result/13984017-d505-44d8-a7dc-2b6237fc8ddd 200 in 66ms (next.js: 10ms, application-code: 55ms)
+ GET /result/13984017-d505-44d8-a7dc-2b6237fc8ddd 200 in 68ms (next.js: 2ms, application-code: 65ms)
+ GET /result/13984017-d505-44d8-a7dc-2b6237fc8ddd 200 in 48ms (next.js: 2ms, application-code: 45ms)
+ GET /result/44241d22-5f19-40e1-a2fd-72420d724fda 200 in 40ms (next.js: 1130µs, application-code: 39ms)
+✓ Compiled in 0ms
+ GET /result/44241d22-5f19-40e1-a2fd-72420d724fda 200 in 166ms (next.js: 1366µs, application-code: 164ms)
+ GET /result/13984017-d505-44d8-a7dc-2b6237fc8ddd 200 in 166ms (next.js: 24ms, application-code: 142ms)
+ GET /result/44241d22-5f19-40e1-a2fd-72420d724fda 200 in 166ms (next.js: 37ms, application-code: 129ms)
+ GET /result/13984017-d505-44d8-a7dc-2b6237fc8ddd 200 in 167ms (next.js: 13ms, application-code: 154ms)
+ GET /result/13984017-d505-44d8-a7dc-2b6237fc8ddd 200 in 168ms (next.js: 4ms, application-code: 165ms)
+ GET /result/13984017-d505-44d8-a7dc-2b6237fc8ddd 200 in 132ms (next.js: 3ms, application-code: 129ms)
+ GET /result/13984017-d505-44d8-a7dc-2b6237fc8ddd 200 in 132ms (next.js: 15ms, application-code: 117ms)
+ GET /result/13984017-d505-44d8-a7dc-2b6237fc8ddd 200 in 133ms (next.js: 37ms, application-code: 97ms)
+ GET /result/44241d22-5f19-40e1-a2fd-72420d724fda 200 in 74ms (next.js: 4ms, application-code: 70ms)
+ GET /result/44241d22-5f19-40e1-a2fd-72420d724fda 200 in 63ms (next.js: 5ms, application-code: 58ms)
+ GET /result/44241d22-5f19-40e1-a2fd-72420d724fda 200 in 79ms (next.js: 3ms, application-code: 76ms)
+ GET /result/44241d22-5f19-40e1-a2fd-72420d724fda 200 in 106ms (next.js: 9ms, application-code: 97ms)
+ GET /result/44241d22-5f19-40e1-a2fd-72420d724fda 200 in 84ms (next.js: 7ms, application-code: 77ms)
+ GET /result/44241d22-5f19-40e1-a2fd-72420d724fda 200 in 40ms (next.js: 4ms, application-code: 36ms)
+ GET /result/44241d22-5f19-40e1-a2fd-72420d724fda 200 in 27ms (next.js: 1372µs, application-code: 25ms)
+ GET /result/44241d22-5f19-40e1-a2fd-72420d724fda 200 in 13ms (next.js: 1573µs, application-code: 11ms)
+ GET / 200 in 45ms (next.js: 21ms, application-code: 24ms)
+Error: Route "/checkout/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at <unknown> (src/app/checkout/[id]/page.tsx:6:63)
+    at Array.find (<anonymous>)
+    at CheckoutPage (src/app/checkout/[id]/page.tsx:6:37)
+  4 |
+  5 | export default function CheckoutPage({ params }: { params: { id: string } }) {
+> 6 |   const product = readyMadeProducts.find(p => p.id === params.id);
+    |                                                               ^
+  7 |   
+  8 |   if (!product) {
+  9 |     return notFound();
+ GET /checkout/puz-lion 200 in 620ms (next.js: 575ms, application-code: 45ms)
+ GET /create 200 in 35ms (next.js: 19ms, application-code: 16ms)
+ GET /result/2ca1d548-4fa1-4146-8b54-0e74a8330ecb 200 in 34ms (next.js: 15ms, application-code: 18ms)
+ GET /result/277229c9-f82b-413b-a39a-0fe451fb6e0c 200 in 14ms (next.js: 3ms, application-code: 11ms)
+ GET / 200 in 26ms (next.js: 7ms, application-code: 19ms)
+✓ Compiled in 100ms
+✓ Compiled in 41ms
+ GET / 200 in 15ms (next.js: 8ms, application-code: 8ms)
+ GET / 200 in 13ms (next.js: 1084µs, application-code: 12ms)
+ GET / 200 in 90ms (next.js: 1147µs, application-code: 89ms)
+ GET /create 200 in 13ms (next.js: 4ms, application-code: 9ms)
+ GET /result/964404c3-8edf-4ea9-9307-0702df700051 200 in 17ms (next.js: 6ms, application-code: 11ms)
+ GET /result/5a7fb229-20b7-402b-8fdd-5971a6d09a00 200 in 18ms (next.js: 6ms, application-code: 12ms)
+ GET / 200 in 27ms (next.js: 7ms, application-code: 19ms)
+ GET /create 200 in 15ms (next.js: 4ms, application-code: 11ms)
+ GET / 200 in 18ms (next.js: 3ms, application-code: 15ms)
+ GET /create 200 in 13ms (next.js: 3ms, application-code: 10ms)
+ GET /my-puzzles 404 in 256ms (next.js: 242ms, application-code: 14ms)
+ GET /my-puzzles 404 in 25ms (next.js: 1233µs, application-code: 24ms)
+ GET / 200 in 12ms (next.js: 1349µs, application-code: 11ms)
+ GET / 200 in 5ms (next.js: 1824µs, application-code: 3ms)
+Error: Route "/checkout/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at <unknown> (src/app/checkout/[id]/page.tsx:6:63)
+    at Array.find (<anonymous>)
+    at CheckoutPage (src/app/checkout/[id]/page.tsx:6:37)
+  4 |
+  5 | export default function CheckoutPage({ params }: { params: { id: string } }) {
+> 6 |   const product = readyMadeProducts.find(p => p.id === params.id);
+    |                                                               ^
+  7 |   
+  8 |   if (!product) {
+  9 |     return notFound();
+ GET /checkout/puz-lion 200 in 25ms (next.js: 7ms, application-code: 18ms)
+✓ Compiled in 48ms
+✓ Compiled in 38ms
+ GET /result/13984017-d505-44d8-a7dc-2b6237fc8ddd 200 in 25ms (next.js: 4ms, application-code: 21ms)
+ GET / 200 in 122ms (next.js: 8ms, application-code: 114ms)

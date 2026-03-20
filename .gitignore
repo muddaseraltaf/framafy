@@ -1,0 +1,17 @@
+# Python
+engine/__pycache__/
+engine/venv/
+engine/.env
+engine/outputs/
+
+# Node
+web/node_modules/
+web/.next/
+web/out/
+web/.env.local
+web/.env.development.local
+web/.env.test.local
+web/.env.production.local
+
+# OS
+.DS_Store

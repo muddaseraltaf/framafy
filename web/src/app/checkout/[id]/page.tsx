@@ -7,8 +7,9 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string || "sk_test_mo
   apiVersion: "2026-02-25.clover",
 });
 
-export default function CheckoutPage({ params }: { params: { id: string } }) {
-  const product = readyMadeProducts.find(p => p.id === params.id);
+export default async function CheckoutPage({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = await params;
+  const product = readyMadeProducts.find(p => p.id === resolvedParams.id);
   
   if (!product) {
     return notFound();

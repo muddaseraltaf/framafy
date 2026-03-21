@@ -92,7 +92,7 @@ export default function CreatePuzzle() {
             type="file" 
             ref={fileInputRef} 
             className="hidden" 
-            accept="image/jpeg, image/png, image/webp" 
+            accept="image/*" 
             onChange={handleFileChange} 
           />
           

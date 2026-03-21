@@ -6,8 +6,21 @@ import Link from "next/link";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "Reveal Your Photo Puzzle",
-  description: "Turn your photos into a printable black-and-white pattern puzzle.",
+  title: "Framafy | Turn Memories into Handmade Pattern Art",
+  description: "Upload any photo and instantly generate a beautifully intricate, printable pattern puzzle. Recreate your favorite memories as stunning halftone or classic art.",
+  openGraph: {
+    title: "Framafy | Turn Memories into Handmade Art",
+    description: "Generate beautiful, printable pattern puzzles from your own photos.",
+    url: "https://framafy.com",
+    siteName: "Framafy",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Framafy | Turn Memories into Handmade Pattern Art",
+    description: "Upload any photo and instantly generate a beautifully intricate, printable pattern puzzle.",
+  },
 };
 
 export default function RootLayout({

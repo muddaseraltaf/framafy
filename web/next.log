@@ -146,3 +146,82 @@ Error: Route "/checkout/[id]" used `params.id`. `params` is a Promise and must b
 ✓ Compiled in 38ms
  GET /result/13984017-d505-44d8-a7dc-2b6237fc8ddd 200 in 25ms (next.js: 4ms, application-code: 21ms)
  GET / 200 in 122ms (next.js: 8ms, application-code: 114ms)
+✓ Compiled in 184ms
+ GET / 200 in 141ms (next.js: 27ms, application-code: 114ms)
+ GET / 200 in 28ms (next.js: 1808µs, application-code: 26ms)
+ GET / 200 in 168ms (next.js: 3ms, application-code: 166ms)
+ GET / 200 in 142ms (next.js: 1435µs, application-code: 141ms)
+ GET / 200 in 120ms (next.js: 1450µs, application-code: 119ms)
+ GET / 200 in 89ms (next.js: 2ms, application-code: 87ms)
+ GET / 200 in 63ms (next.js: 3ms, application-code: 60ms)
+ GET / 200 in 272ms (next.js: 176ms, application-code: 96ms)
+ GET / 200 in 56ms (next.js: 1899µs, application-code: 54ms)
+ GET / 200 in 66ms (next.js: 880µs, application-code: 65ms)
+ GET / 200 in 70ms (next.js: 842µs, application-code: 69ms)
+ GET / 200 in 62ms (next.js: 2ms, application-code: 59ms)
+ GET / 200 in 75ms (next.js: 912µs, application-code: 74ms)
+ GET / 200 in 78ms (next.js: 987µs, application-code: 77ms)
+ GET / 200 in 72ms (next.js: 1129µs, application-code: 71ms)
+ GET / 200 in 82ms (next.js: 1319µs, application-code: 80ms)
+ GET / 200 in 69ms (next.js: 1565µs, application-code: 68ms)
+ GET / 200 in 59ms (next.js: 1153µs, application-code: 58ms)
+ GET / 200 in 48ms (next.js: 1324µs, application-code: 47ms)
+ GET / 200 in 29ms (next.js: 2ms, application-code: 26ms)
+ GET / 200 in 17ms (next.js: 846µs, application-code: 16ms)
+ GET / 200 in 245ms (next.js: 110ms, application-code: 136ms)
+ GET / 200 in 85ms (next.js: 1736µs, application-code: 83ms)
+ GET / 200 in 55ms (next.js: 1171µs, application-code: 54ms)
+ GET / 200 in 65ms (next.js: 1021µs, application-code: 64ms)
+ GET / 200 in 57ms (next.js: 882µs, application-code: 56ms)
+ GET / 200 in 64ms (next.js: 1000µs, application-code: 63ms)
+ GET / 200 in 63ms (next.js: 775µs, application-code: 62ms)
+ GET / 200 in 62ms (next.js: 733µs, application-code: 62ms)
+ GET / 200 in 63ms (next.js: 1001µs, application-code: 62ms)
+ GET / 200 in 51ms (next.js: 938µs, application-code: 50ms)
+ GET / 200 in 62ms (next.js: 974µs, application-code: 61ms)
+ GET / 200 in 53ms (next.js: 794µs, application-code: 53ms)
+ GET / 200 in 42ms (next.js: 920µs, application-code: 41ms)
+ GET / 200 in 33ms (next.js: 779µs, application-code: 33ms)
+ GET / 200 in 23ms (next.js: 792µs, application-code: 22ms)
+ GET / 200 in 12ms (next.js: 791µs, application-code: 12ms)
+✓ Compiled in 0ms
+✓ Compiled in 30ms
+✓ Compiled in 187ms
+ GET / 200 in 150ms (next.js: 66ms, application-code: 83ms)
+ GET / 200 in 43ms (next.js: 1091µs, application-code: 42ms)
+ GET / 200 in 25ms (next.js: 1623µs, application-code: 23ms)
+ GET / 200 in 15ms (next.js: 1209µs, application-code: 13ms)
+[browser] ./photo project/photo-puzzle-mvp/web/src/app/checkout/[id]/page.tsx:12:3
+'import', and 'export' cannot be used outside of module code
+  10 |   }
+  11 |
+> 12 |   import { redirect } from "next/navigation";
+     |   ^^^^^^
+  13 |   import Stripe from "stripe";
+  14 |   
+  15 |   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as strin...
+
+Parsing ecmascript source code failed 
+[browser] ./photo project/photo-puzzle-mvp/web/src/app/checkout/[id]/page.tsx:12:3
+'import', and 'export' cannot be used outside of module code
+  10 |   }
+  11 |
+> 12 |   import { redirect } from "next/navigation";
+     |   ^^^^^^
+  13 |   import Stripe from "stripe";
+  14 |   
+  15 |   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as strin...
+
+Parsing ecmascript source code failed 
+[browser] ./photo project/photo-puzzle-mvp/web/src/app/checkout/[id]/page.tsx:12:3
+'import', and 'export' cannot be used outside of module code
+  10 |   }
+  11 |
+> 12 |   import { redirect } from "next/navigation";
+     |   ^^^^^^
+  13 |   import Stripe from "stripe";
+  14 |   
+  15 |   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as strin...
+
+Parsing ecmascript source code failed 
+✓ Compiled in 137ms

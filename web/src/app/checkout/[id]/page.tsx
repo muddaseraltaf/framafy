@@ -1,6 +1,11 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { readyMadeProducts } from "@/data/products";
 import Link from "next/link";
+import Stripe from "stripe";
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string || "sk_test_mock", {
+  apiVersion: "2026-02-25.clover",
+});
 
 export default function CheckoutPage({ params }: { params: { id: string } }) {
   const product = readyMadeProducts.find(p => p.id === params.id);
@@ -9,13 +14,31 @@ export default function CheckoutPage({ params }: { params: { id: string } }) {
     return notFound();
   }
 
-  // Handle checkout dummy function
+  // Handle checkout function
   async function handleCheckout(formData: FormData) {
     "use server";
-    // In actual implementation, we'd call the backend API to get a Stripe Session URL
-    if (product) {
-      console.log("Checking out product", product.id);
+    if (!product) return;
+    
+    // Vercel domain or localhost
+    const host = process.env.NEXT_PUBLIC_SITE_URL || (process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` : "http://localhost:3000");
+    const domain = host;
+
+    if (!process.env.STRIPE_SECRET_KEY || process.env.STRIPE_SECRET_KEY === "sk_test_mock") {
+      redirect(`${domain}/success/${product.id}`);
     }
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      line_items: [{
+        price_data: { currency: "usd", product_data: { name: "Ready-Made: " + product.title, description: "Instant PDF Download" }, unit_amount: product.price * 100 },
+        quantity: 1,
+      }],
+      mode: "payment",
+      success_url: `${domain}/success/${product.id}`,
+      cancel_url: `${domain}/checkout/${product.id}`,
+    });
+
+    redirect(session.url as string);
   }
 
   return (

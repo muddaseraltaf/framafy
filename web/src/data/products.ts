@@ -13,7 +13,7 @@ export const readyMadeProducts: Product[] = [
     title: "Majestic Lion",
     description: "A classic pattern challenge. Perfect for advanced puzzlers looking for stunning wall art.",
     price: 10.00,
-    imageUrl: "https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=800&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=800&q=80",
     difficulty: "Detailed"
   },
   {
@@ -39,5 +39,37 @@ export const readyMadeProducts: Product[] = [
     price: 10.00,
     imageUrl: "https://images.unsplash.com/photo-1517849845537-4d257902454a?w=800&q=80",
     difficulty: "Easy"
+  },
+  {
+    id: "puz-elephant",
+    title: "African Elephant",
+    description: "A gorgeous, textured portrait of a wild elephant that translates beautifully into patterns.",
+    price: 10.00,
+    imageUrl: "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?w=800&q=80",
+    difficulty: "Detailed"
+  },
+  {
+    id: "puz-mountain",
+    title: "Alpine Peaks",
+    description: "A breathtaking mountain range. The strong contrast makes for a very satisfying puzzle reveal.",
+    price: 10.00,
+    imageUrl: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80",
+    difficulty: "Medium"
+  },
+  {
+    id: "puz-flower",
+    title: "Blooming Rose",
+    description: "An intricate, delicate floral design perfect for framing.",
+    price: 10.00,
+    imageUrl: "https://images.unsplash.com/photo-1496062031456-07b8f162a322?w=800&q=80",
+    difficulty: "Medium"
+  },
+  {
+    id: "puz-eagle",
+    title: "Soaring Eagle",
+    description: "A fiercely detailed eagle portrait with striking feather patterns.",
+    price: 10.00,
+    imageUrl: "https://images.unsplash.com/photo-1611689342806-0863700ce1e4?w=800&q=80",
+    difficulty: "Detailed"
   }
 ];

@@ -18,18 +18,18 @@ export const readyMadeProducts: Product[] = [
   },
   {
     id: "puz-architecture",
-    title: "Gothic Architecture",
-    description: "Re-create a stunning gothic facade dot by dot. A beautiful weekend activity.",
+    title: "Tokyo Street",
+    description: "Re-create a stunning urban cityscape dot by dot. A beautiful weekend activity.",
     price: 10.00,
-    imageUrl: "https://images.unsplash.com/photo-1548625361-ec849204fb98?w=800&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1480796927426-f609979314bd?w=800&q=80",
     difficulty: "Medium"
   },
   {
-    id: "puz-cow",
-    title: "Highland Cow",
-    description: "A relaxing, fun puzzle featuring a fluffy highland cow. Great for kids and adults.",
+    id: "puz-cat",
+    title: "Curious Cat",
+    description: "A relaxing, fun puzzle featuring a curious kitten. Great for kids and adults.",
     price: 10.00,
-    imageUrl: "https://images.unsplash.com/photo-1564883955572-c23631f47833?w=800&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=800&q=80",
     difficulty: "Easy"
   },
   {

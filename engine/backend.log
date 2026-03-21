@@ -15,3 +15,5 @@ INFO:     127.0.0.1:63931 - "POST /api/generate HTTP/1.1" 200 OK
 INFO:     127.0.0.1:63933 - "GET /outputs/f2391e45-bea8-43ed-a1bb-ae323e6b7329/preview.png HTTP/1.1" 200 OK
 INFO:     127.0.0.1:63935 - "GET /outputs/f2391e45-bea8-43ed-a1bb-ae323e6b7329/answer.png HTTP/1.1" 200 OK
 INFO:     127.0.0.1:63939 - "GET /outputs/f2391e45-bea8-43ed-a1bb-ae323e6b7329/answer.png HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64094 - "POST /api/generate HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64100 - "GET /outputs/ab404377-15d3-4bcd-8b2a-4dd61c9093c5/preview.png HTTP/1.1" 200 OK

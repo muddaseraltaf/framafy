@@ -6,11 +6,11 @@ import Link from "next/link";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "Pictoru | Turn Memories into Handmade Pattern Art",
-  description: "Upload any photo and instantly generate a beautifully intricate, printable pattern puzzle. Recreate your favorite memories as stunning halftone or classic art.",
+  title: "Pictoru | Turn Your Photo Into Meaningful Art",
+  description: "The premium diamond painting alternative. Upload your favorite photo to instantly generate a stunning, printable pattern puzzle. Relax, unwind, and create truly personal art.",
   openGraph: {
-    title: "Pictoru | Turn Memories into Handmade Art",
-    description: "Generate beautiful, printable pattern puzzles from your own photos.",
+    title: "Pictoru | Turn Your Photo Into Meaningful Art",
+    description: "The premium diamond painting alternative. Upload your favorite photo to instantly generate a stunning, printable pattern puzzle. Relax, unwind, and create truly personal art.",
     url: "https://pictoru.com",
     siteName: "Pictoru",
     locale: "en_US",
@@ -18,8 +18,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pictoru | Turn Memories into Handmade Pattern Art",
-    description: "Upload any photo and instantly generate a beautifully intricate, printable pattern puzzle.",
+    title: "Pictoru | Turn Your Photo Into Meaningful Art",
+    description: "The premium diamond painting alternative. Upload your favorite photo to instantly generate a stunning, printable pattern puzzle. Relax, unwind, and create truly personal art.",
   },
 };
 

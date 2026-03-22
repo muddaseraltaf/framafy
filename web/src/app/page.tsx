@@ -9,7 +9,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="text-center space-y-10 max-w-3xl mx-auto pt-10">
         <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-neutral-900 leading-[1.1]">
-          Uncover the <br /><span className="text-neutral-400">hidden art.</span>
+          Uncover the <br /><span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-600">hidden art.</span>
         </h1>
         <p className="text-xl md:text-2xl text-neutral-600 leading-relaxed font-light">
           Experience the magic of revealing stunning, photorealistic art—one pattern at a time. Perfect for gifting, relaxing, or creating beautiful wall decor.
@@ -17,13 +17,13 @@ export default function Home() {
         <div className="flex flex-col sm:flex-row gap-4 items-center justify-center pt-4">
           <Link 
             href="/#collection" 
-            className="w-full sm:w-auto px-8 py-4 bg-neutral-900 text-white font-medium rounded-full hover:bg-neutral-800 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+            className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium rounded-full hover:opacity-90 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
           >
             Shop Collection
           </Link>
           <Link 
             href="/create" 
-            className="w-full sm:w-auto px-8 py-4 bg-white text-neutral-900 font-medium rounded-full border border-neutral-200 hover:bg-neutral-50 transition-all"
+            className="w-full sm:w-auto px-8 py-4 bg-white text-neutral-900 font-medium rounded-full border border-neutral-200 hover:border-purple-300 hover:text-purple-700 transition-all"
           >
             Upload Custom Photo
           </Link>
@@ -45,16 +45,16 @@ export default function Home() {
       </section>
 
       {/* Custom Portrait Banner */}
-      <section className="bg-neutral-900 rounded-[3rem] p-12 md:p-20 text-center text-white space-y-8 shadow-2xl overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-white opacity-5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3" />
+      <section className="bg-gradient-to-br from-indigo-950 via-purple-900 to-pink-800 rounded-[3rem] p-12 md:p-20 text-center text-white space-y-8 shadow-2xl overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-white opacity-10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3" />
         
         <div className="relative z-10 max-w-2xl mx-auto space-y-8">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Turn your memories into handmade art.</h2>
-          <p className="text-xl text-neutral-400 font-light">Upload any photo of a loved one, pet, or scenery and our engine will instantly generate a 6-pattern puzzle for you to solve.</p>
+          <p className="text-xl text-pink-100 font-light">Upload any photo of a loved one, pet, or scenery and our engine will instantly generate a 6-pattern puzzle for you to solve.</p>
           <Link 
             href="/create" 
-            className="inline-block px-10 py-5 bg-white text-neutral-900 font-bold rounded-full hover:bg-neutral-100 transition-all shadow-xl hover:scale-105"
+            className="inline-block px-10 py-5 bg-white text-purple-900 font-bold rounded-full hover:bg-pink-50 transition-all shadow-xl hover:scale-105"
           >
             Start Your Custom Puzzle
           </Link>

@@ -8,7 +8,7 @@ export default function CreatePuzzle() {
   const router = useRouter();
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
-  const [gridSize, setGridSize] = useState("medium");
+
   const [orientation, setOrientation] = useState("portrait");
 
   const [title, setTitle] = useState("Reveal Your Photo Puzzle");
@@ -59,7 +59,7 @@ export default function CreatePuzzle() {
     setError(null);
 
     try {
-      const result = await generatePuzzle(file, gridSize, title, subtitle, orientation);
+      const result = await generatePuzzle(file, title, subtitle, orientation);
       
       // We will pass the URLs to the result page via sessionStorage for MVP simplicity,
       // since there is no database storing the job objects right now.
@@ -126,28 +126,7 @@ export default function CreatePuzzle() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Configuration Options */}
           <div className="space-y-6">
-            <div>
-              <label className="block text-sm font-medium text-neutral-700 mb-2">Grid Detail Level</label>
-              <div className="grid grid-cols-3 gap-3">
-                {["easy", "medium", "detailed"].map((level) => (
-                  <button
-                    key={level}
-                    type="button"
-                    onClick={() => setGridSize(level)}
-                    className={`py-3 rounded-xl border text-sm font-medium transition-all capitalize ${
-                      gridSize === level 
-                        ? 'border-neutral-900 bg-neutral-900 text-white shadow-md' 
-                        : 'border-neutral-200 bg-white text-neutral-600 hover:border-neutral-300'
-                    }`}
-                  >
-                    {level}
-                  </button>
-                ))}
-              </div>
-            </div>
-
             <div>
               <label className="block text-sm font-medium text-neutral-700 mb-2">Orientation</label>
               <div className="grid grid-cols-2 gap-3">

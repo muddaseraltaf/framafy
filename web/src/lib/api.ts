@@ -5,16 +5,14 @@ export interface GenerateResponse {
   pdf_url: string;
 }
 
-export async function generatePuzzle(
+export const generatePuzzle = async (
   image: File,
-  gridSize: string,
   title: string,
   subtitle: string,
   orientation: string = "portrait"
-): Promise<GenerateResponse> {
+): Promise<GenerateResponse> => {
   const formData = new FormData();
   formData.append("image", image);
-  formData.append("grid_size", gridSize);
   formData.append("title", title);
   formData.append("subtitle", subtitle);
   formData.append("orientation", orientation);

@@ -67,12 +67,13 @@ export default function ResultPage() {
         body: JSON.stringify({ job_id: id, email: testEmail }),
       });
       if (res.ok) {
-        setEmailStatus("Test email dispatched!");
+        setEmailStatus("Test email dispatched successfully!");
       } else {
-        setEmailStatus("Failed to send.");
+        const errorData = await res.json().catch(() => null);
+        setEmailStatus(`Failed: ${errorData?.detail || "Network error"}`);
       }
     } catch (err) {
-      setEmailStatus("Network error.");
+      setEmailStatus("Network error transmitting payload.");
     }
   };
 

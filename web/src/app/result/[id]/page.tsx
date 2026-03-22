@@ -67,8 +67,8 @@ export default function ResultPage() {
           
           <div className="space-y-4">
             <h3 className="text-xl font-semibold text-neutral-800">Final Reveal Preview</h3>
-            <div className="aspect-[3/4] bg-neutral-50 rounded-2xl border border-neutral-200 flex items-center justify-center overflow-hidden">
-              <img src={data.answer_url} alt="Puzzle Preview" className="w-full h-full object-contain p-4 mix-blend-multiply opacity-50 blur-[2px] transition-all hover:blur-none hover:opacity-100" />
+            <div className="aspect-[3/4] bg-neutral-50 rounded-2xl border border-neutral-200 flex items-center justify-center overflow-hidden relative">
+              <img src={data.preview_url} alt="Puzzle Preview" className="w-full h-full object-contain p-4 mix-blend-multiply" />
             </div>
           </div>
 

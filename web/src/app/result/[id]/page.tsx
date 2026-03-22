@@ -11,12 +11,18 @@ export default function ResultPage() {
   const id = params.id as string;
   const [data, setData] = useState<GenerateResponse | null>(null);
   const [isUnlocked, setIsUnlocked] = useState(false);
+  const [isBypass, setIsBypass] = useState(false);
+  const [testEmail, setTestEmail] = useState("");
+  const [emailStatus, setEmailStatus] = useState<string | null>(null);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const search = new URLSearchParams(window.location.search);
       if (search.get("success") === "true" || search.get("bypass") === "true") {
         setIsUnlocked(true);
+      }
+      if (search.get("bypass") === "true") {
+        setIsBypass(true);
       }
     }
     
@@ -45,6 +51,28 @@ export default function ResultPage() {
       }
     } catch (e) {
       console.error(e);
+    }
+  };
+
+  const handleTestEmail = async () => {
+    if (!testEmail || !testEmail.includes("@")) {
+      setEmailStatus("Please enter a valid email.");
+      return;
+    }
+    setEmailStatus("Sending...");
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL || ""}/api/resend_email`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ job_id: id, email: testEmail }),
+      });
+      if (res.ok) {
+        setEmailStatus("Test email dispatched!");
+      } else {
+        setEmailStatus("Failed to send.");
+      }
+    } catch (err) {
+      setEmailStatus("Network error.");
     }
   };
 
@@ -99,6 +127,28 @@ export default function ResultPage() {
                   Download Answer Key
                 </a>
                 <p className="text-sm text-center text-emerald-600 font-medium mt-4">✓ Purchase Successful!</p>
+                
+                {isBypass && (
+                  <div className="mt-8 pt-6 border-t border-neutral-200">
+                    <p className="text-sm font-semibold text-neutral-500 mb-3 uppercase tracking-wider">Developer Tool: Test Email</p>
+                    <div className="flex gap-2">
+                      <input 
+                        type="email" 
+                        value={testEmail}
+                        onChange={(e) => setTestEmail(e.target.value)}
+                        placeholder="test@email.com" 
+                        className="flex-1 px-3 py-2 border rounded-lg text-sm bg-neutral-50"
+                      />
+                      <button 
+                        onClick={handleTestEmail}
+                        className="px-4 py-2 bg-neutral-900 text-white rounded-lg text-sm font-medium hover:bg-neutral-800"
+                      >
+                        Send
+                      </button>
+                    </div>
+                    {emailStatus && <p className="text-xs text-neutral-500 mt-2">{emailStatus}</p>}
+                  </div>
+                )}
               </div>
             ) : (
               <>

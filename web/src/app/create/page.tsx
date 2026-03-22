@@ -54,6 +54,12 @@ export default function CreatePuzzle() {
       setError("An image is required.");
       return;
     }
+    
+    const validTypes = ["image/jpeg", "image/png", "image/webp", "image/jpg"];
+    if (!validTypes.includes(file.type)) {
+      setError("Unsupported file format. Please upload a standard JPG, PNG, or WEBP image.");
+      return;
+    }
 
     setIsSubmitting(true);
     setError(null);
@@ -92,7 +98,7 @@ export default function CreatePuzzle() {
             type="file" 
             ref={fileInputRef} 
             className="hidden" 
-            accept="image/*" 
+            accept="image/jpeg, image/png, image/webp" 
             onChange={handleFileChange} 
           />
           
@@ -120,7 +126,7 @@ export default function CreatePuzzle() {
                 </svg>
               </div>
               <p className="text-lg font-medium text-neutral-700">Click to upload or drag & drop</p>
-              <p className="text-sm text-neutral-500">SVG, PNG, JPG or WEBP</p>
+              <p className="text-sm text-neutral-500">Supported: JPG, PNG, WEBP (No AVIF/HEIC)</p>
             </div>
           )}
         </div>

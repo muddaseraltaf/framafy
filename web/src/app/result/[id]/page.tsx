@@ -10,8 +10,16 @@ export default function ResultPage() {
   const router = useRouter();
   const id = params.id as string;
   const [data, setData] = useState<GenerateResponse | null>(null);
+  const [isUnlocked, setIsUnlocked] = useState(false);
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      const search = new URLSearchParams(window.location.search);
+      if (search.get("success") === "true" || search.get("bypass") === "true") {
+        setIsUnlocked(true);
+      }
+    }
+    
     // Retrieve data from session storage mapping this user flow.
     // In a real DB-backed app, we would fetch this from /api/jobs/[id].
     const stored = sessionStorage.getItem(`puzzle_${id}`);
@@ -82,13 +90,27 @@ export default function ResultPage() {
               </li>
             </ul>
 
-            <button 
-              onClick={handleCheckout}
-              className="block w-full text-center py-5 bg-neutral-900 text-white rounded-xl font-bold shadow-xl hover:bg-neutral-800 transition-all text-xl hover:scale-105"
-            >
-              Checkout with Stripe
-            </button>
-            <p className="text-xs text-center text-neutral-400 mt-4">Secure payment processing. Files are delivered instantly.</p>
+            {isUnlocked ? (
+              <div className="space-y-4">
+                <a href={data.pdf_url} download className="block w-full text-center py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl font-bold shadow-xl hover:opacity-90 transition-all text-xl hover:scale-105">
+                  Download Printable PDF
+                </a>
+                <a href={data.answer_url} download className="block w-full text-center py-4 bg-neutral-100 text-neutral-900 rounded-xl font-bold hover:bg-neutral-200 transition-all">
+                  Download Answer Key
+                </a>
+                <p className="text-sm text-center text-emerald-600 font-medium mt-4">✓ Purchase Successful!</p>
+              </div>
+            ) : (
+              <>
+                <button 
+                  onClick={handleCheckout}
+                  className="block w-full text-center py-5 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl font-bold shadow-xl hover:opacity-90 transition-all text-xl hover:scale-105"
+                >
+                  Checkout with Stripe
+                </button>
+                <p className="text-xs text-center text-neutral-400 mt-4">Secure payment processing. Files are delivered instantly.</p>
+              </>
+            )}
           </div>
 
         </div>

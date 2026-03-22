@@ -33,13 +33,14 @@ export async function POST(req: Request) {
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
+      customer_creation: "always",
       line_items: [
         {
           price_data: {
             currency: "usd",
             product_data: {
               name: title,
-              description: "Beautiful, printable pattern puzzle PDF.",
+              description: "Beautiful, printable custom puzzle PDF package.",
             },
             unit_amount: price,
           },
@@ -49,6 +50,9 @@ export async function POST(req: Request) {
       mode: "payment",
       success_url: `${domain}/success/${id}`,
       cancel_url: `${domain}`,
+      metadata: {
+        job_id: id
+      }
     });
 
     return NextResponse.json({ url: session.url });

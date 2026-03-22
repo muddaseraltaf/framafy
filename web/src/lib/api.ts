@@ -10,8 +10,7 @@ export async function generatePuzzle(
   gridSize: string,
   title: string,
   subtitle: string,
-  orientation: string = "portrait",
-  style: string = "pattern"
+  orientation: string = "portrait"
 ): Promise<GenerateResponse> {
   const formData = new FormData();
   formData.append("image", image);
@@ -19,7 +18,6 @@ export async function generatePuzzle(
   formData.append("title", title);
   formData.append("subtitle", subtitle);
   formData.append("orientation", orientation);
-  formData.append("style", style);
 
   const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
   

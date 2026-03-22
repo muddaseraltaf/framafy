@@ -10,7 +10,7 @@ export default function CreatePuzzle() {
   const [preview, setPreview] = useState<string | null>(null);
   const [gridSize, setGridSize] = useState("medium");
   const [orientation, setOrientation] = useState("portrait");
-  const [style, setStyle] = useState("pattern");
+
   const [title, setTitle] = useState("Reveal Your Photo Puzzle");
   const [subtitle, setSubtitle] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -59,7 +59,7 @@ export default function CreatePuzzle() {
     setError(null);
 
     try {
-      const result = await generatePuzzle(file, gridSize, title, subtitle, orientation, style);
+      const result = await generatePuzzle(file, gridSize, title, subtitle, orientation);
       
       // We will pass the URLs to the result page via sessionStorage for MVP simplicity,
       // since there is no database storing the job objects right now.
@@ -161,14 +161,6 @@ export default function CreatePuzzle() {
                     {val}
                   </button>
                 ))}
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-neutral-700 mb-2">Pattern Style</label>
-              <div className="grid grid-cols-2 gap-3">
-                <button type="button" onClick={() => setStyle("pattern")} className={`py-3 rounded-xl border text-sm font-medium transition-all ${style === "pattern" ? 'border-neutral-900 bg-neutral-900 text-white shadow-md' : 'border-neutral-200 bg-white text-neutral-600 hover:border-neutral-300'}`}>Classic Patterns</button>
-                <button type="button" onClick={() => setStyle("circles")} className={`py-3 rounded-xl border text-sm font-medium transition-all ${style === "circles" ? 'border-neutral-900 bg-neutral-900 text-white shadow-md' : 'border-neutral-200 bg-white text-neutral-600 hover:border-neutral-300'}`}>Halftone Circles</button>
               </div>
             </div>
 

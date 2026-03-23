@@ -34,9 +34,9 @@ export default function Home() {
 
         <div className="relative w-full aspect-[4/3] md:aspect-[21/9] rounded-[2rem] overflow-hidden shadow-2xl border border-neutral-200/50">
           <img 
-            src="/hero_framed_puzzle.png" 
-            alt="Intricate dot painting portrait in a luxury black frame hanging in a modern living room" 
-            className="w-full h-full object-cover"
+            src="/product-shot-1.jpg" 
+            alt="Smiling woman and golden retriever alongside a framed custom circle-dot portrait" 
+            className="w-full h-full object-cover object-top"
           />
         </div>
       </section>
@@ -56,21 +56,31 @@ export default function Home() {
       </section>
 
       {/* Custom Portrait Banner */}
-      <section className="bg-gradient-to-br from-indigo-950 via-purple-900 to-pink-800 rounded-[3rem] p-12 md:p-20 text-center text-white space-y-8 shadow-2xl overflow-hidden relative mx-4 lg:mx-0">
+      <section className="bg-gradient-to-br from-indigo-950 via-purple-900 to-pink-800 rounded-[3rem] p-12 md:p-16 text-white shadow-2xl overflow-hidden relative mx-4 lg:mx-0">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-white opacity-10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3" />
         
-        <div className="relative z-10 max-w-3xl mx-auto space-y-8">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Looking for a unique gift? Create something truly personal.</h2>
-          <p className="text-xl text-pink-100 font-light leading-relaxed">
-            Skip the generic gifts and diamond painting kits. With Pictoru, you can upload any photo of a loved one, pet, or landscape, and instantly generate a beautiful, printable master pattern.
-          </p>
-          <Link 
-            href="/create" 
-            className="inline-block px-10 py-5 bg-white text-purple-900 font-bold text-lg rounded-full hover:bg-pink-50 transition-all shadow-xl hover:scale-105"
-          >
-            Start Your Masterpiece
-          </Link>
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-8 text-center lg:text-left">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Looking for a unique gift? Create something truly personal.</h2>
+            <p className="text-xl text-pink-100 font-light leading-relaxed">
+              Skip the generic gifts and diamond painting kits. With Pictoru, you can upload any photo of a loved one, pet, or landscape, and instantly generate a beautiful, printable master pattern.
+            </p>
+            <Link 
+              href="/create" 
+              className="inline-block px-10 py-5 bg-white text-purple-900 font-bold text-lg rounded-full hover:bg-pink-50 transition-all shadow-xl hover:scale-105"
+            >
+              Start Your Masterpiece
+            </Link>
+          </div>
+          
+          <div className="w-full aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 rotate-2 hover:rotate-0 transition-transform duration-500">
+            <img 
+              src="/product-shot-2.jpg" 
+              alt="Woman smiling holding a framed custom circle-dot portrait of a pug" 
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
       </section>
 

@@ -32,7 +32,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="relative w-full aspect-[4/3] md:aspect-[21/9] rounded-[2rem] overflow-hidden shadow-2xl border border-neutral-200/50">
+        <div className="relative w-full max-w-2xl mx-auto aspect-square rounded-[3rem] overflow-hidden shadow-2xl border border-neutral-200/50">
           <img 
             src="/product-shot-1.jpg" 
             alt="Smiling woman and golden retriever alongside a framed custom circle-dot portrait" 

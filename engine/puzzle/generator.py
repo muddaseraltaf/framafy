@@ -8,22 +8,22 @@ from puzzle.pattern_renderer import render_pattern_cell, render_guide, render_ci
 from puzzle.pdf_export import create_puzzle_pdf
 
 GRID_SIZES = {
-    "easy": (30, 40),     # Tripled easy from 15x20
-    "medium": (45, 60),   # 50% larger than old detailed
-    "detailed": (75, 100) # Highly detailed, requires thin markers
+    "easy": (60, 80),     # Baseline bumped for minimal facial geometry boundaries
+    "medium": (90, 120),  # Standard tier elevated to previous detailed tier
+    "detailed": (120, 160) # Premier tier (19,200 elements) to aggressively rival competitor definition
 }
 
 def get_level_from_brightness(brightness: float) -> int:
-    # Skewed token mapping to preserve light details.
-    # Level 1 (Blank) is reserved strictly for very bright/pure white areas.
-    if brightness < 60: return 6  # Solid block
-    if brightness < 110: return 5 # Star
-    if brightness < 160: return 4 # X cross
-    if brightness < 200: return 3 # Diagonal
-    if brightness < 240: return 2 # Dot
+    # Evenly distributed mapping to preserve mid-tone skin details.
+    if brightness < 40: return 6  # Solid block (Strictly for pitch black)
+    if brightness < 90: return 5  # Star
+    if brightness < 140: return 4 # X cross
+    if brightness < 190: return 3 # Diagonal
+    if brightness < 230: return 2 # Dot
     return 1                      # White
 
-def process_image(job_id: str, image_bytes: bytes, grid_size: str, title: str, subtitle: str, orientation: str = "portrait", style: str = "pattern") -> dict:
+def process_image(job_id: str, image_bytes: bytes, title: str, subtitle: str, orientation: str = "portrait") -> dict:
+    grid_size = "detailed"
     job_dir = get_job_dir(job_id)
     
     from io import BytesIO
@@ -74,104 +74,155 @@ def process_image(job_id: str, image_bytes: bytes, grid_size: str, title: str, s
         # Already perfectly scaled
         gray_cropped = gray
             
-    # Apply light Gaussian Blur to reduce noise before downsampling
+    # Apply light Gaussian Blur to reduce grain noise
     blurred = cv2.GaussianBlur(gray_cropped, (5, 5), 0)
 
-    # Simple Contrast Stretching (Normalization) to span exactly 0-255 without adding artificial local noise
-    enhanced_gray = cv2.normalize(blurred, None, 0, 255, cv2.NORM_MINMAX)
+    # Apply CLAHE (Contrast Limited Adaptive Histogram Equalization) to bring out facial mid-tones
+    # This prevents dark areas (like beards/hair) from becoming giant solid black blobs
+    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+    enhanced_gray = clahe.apply(blurred)
+    
+    # Compress the histogram to eliminate pure white voids.
+    # Scales [0, 255] down to [0, 220], forcing pure white backgrounds to hit threshold Level 2 (Dot)
+    # instead of Level 1 (Empty), while proportionately darkening the rest of the photo for contrast.
+    enhanced_gray = cv2.convertScaleAbs(enhanced_gray, alpha=(220.0/255.0), beta=0)
         
-    # Helper to generate given modes for a specific resolution
-    def generate_grid_images(img_gray, c, r, c_size, make_answer=False, make_puzzle=True, make_empty=False):
+    def generate_grid_images(img_gray, c, r, c_size, mode_style, make_empty=False):
         s_gray = cv2.resize(img_gray, (c, r), interpolation=cv2.INTER_AREA)
-        lvl_grid = np.zeros_like(s_gray, dtype=np.uint8)
-        for y in range(r):
-            for x in range(c):
-                lvl_grid[y, x] = get_level_from_brightness(s_gray[y, x])
+        
+        if mode_style == "circles":
+            # Circles calculate radius continuously from raw brightness (0-255). No quantization needed.
+            lvl_grid = np.zeros_like(s_gray, dtype=np.uint8)
+        else:
+            # Floyd-Steinberg Error Diffusion Dithering for Geometric Pattern blocks
+            # Eliminates stark topographic block "banding" between transitions by dispersing quantization error.
+            dither_gray = s_gray.copy().astype(float)
+            lvl_grid = np.zeros_like(s_gray, dtype=np.uint8)
+            
+            # The ideal target brightness "centers" mapping to the 1-6 threshold tiers
+            allowed_b = [0, 65, 115, 165, 210, 255]
+            
+            for y in range(r):
+                for x in range(c):
+                    old_pixel = dither_gray[y, x]
+                    new_pixel = min(allowed_b, key=lambda val: abs(val - old_pixel))
+                    dither_gray[y, x] = new_pixel
+                    quant_error = old_pixel - new_pixel
+                    
+                    if x + 1 < c:
+                        dither_gray[y, x + 1] += quant_error * 7 / 16
+                    if y + 1 < r:
+                        if x > 0:
+                            dither_gray[y + 1, x - 1] += quant_error * 3 / 16
+                        dither_gray[y + 1, x] += quant_error * 5 / 16
+                        if x + 1 < c:
+                            dither_gray[y + 1, x + 1] += quant_error * 1 / 16
+                            
+                    lvl_grid[y, x] = get_level_from_brightness(new_pixel)
                 
-        ans_img = Image.new("L", (c * c_size, r * c_size), color=255) if make_answer else None
-        puz_img = Image.new("L", (c * c_size, r * c_size), color=255) if make_puzzle else None
+        ans_img = Image.new("L", (c * c_size, r * c_size), color=255)
+        puz_img = Image.new("L", (c * c_size, r * c_size), color=255)
         emp_img = Image.new("L", (c * c_size, r * c_size), color=255) if make_empty else None
         
-        if style == "circles":
-            a_cache = {l: render_circle_cell(l, c_size, outline_only=False) for l in range(1, 7)}
-            p_cache = {l: render_circle_cell(l, c_size, outline_only=True) for l in range(1, 7)}
-            e_cache = {l: render_circle_cell(1, c_size, outline_only=False) for l in range(1, 7)}
+        if mode_style == "circles":
+            a_cache = {l: render_circle_cell(l, c_size, outline_only=False) for l in range(256)}
+            p_cache = {l: render_circle_cell(l, c_size, outline_only=True) for l in range(256)}
         else:
             a_cache = {l: render_pattern_cell(l, c_size, show_number=False) for l in range(1, 7)}
-            p_cache = {l: render_pattern_cell(1, c_size, show_number=True, number=l) for l in range(1, 7)}
-            e_cache = {l: render_pattern_cell(1, c_size, show_number=False) for l in range(1, 7)}
+            p_cache = {
+                1: render_pattern_cell(1, c_size, show_number=False, is_blueprint=True),
+                2: render_pattern_cell(2, c_size, show_number=False, is_blueprint=True),
+                3: render_pattern_cell(1, c_size, show_number=True, number=1, is_blueprint=True),
+                4: render_pattern_cell(1, c_size, show_number=True, number=2, is_blueprint=True),
+                5: render_pattern_cell(1, c_size, show_number=True, number=3, is_blueprint=True),
+                6: render_pattern_cell(1, c_size, show_number=True, number=4, is_blueprint=True),
+            }
+            if make_empty:
+                e_cache = {l: render_pattern_cell(1, c_size, show_number=False) for l in range(1, 7)}
         
         for y in range(r):
             for x in range(c):
-                val = lvl_grid[y, x]
-                if make_answer: ans_img.paste(a_cache[val], (x * c_size, y * c_size))
-                if make_puzzle: puz_img.paste(p_cache[val], (x * c_size, y * c_size))
-                if make_empty: emp_img.paste(e_cache[val], (x * c_size, y * c_size))
+                # Circle Halftones bypass the rigid 6-step blueprint logic for absolute variance
+                val = s_gray[y, x] if mode_style == "circles" else lvl_grid[y, x]
+                
+                ans_img.paste(a_cache[val], (x * c_size, y * c_size))
+                puz_img.paste(p_cache[val], (x * c_size, y * c_size))
+                if make_empty and mode_style == "pattern":
+                    emp_img.paste(e_cache[val], (x * c_size, y * c_size))
                 
         return ans_img, puz_img, emp_img
 
-    cell_size = 20 if grid_size == "easy" else (15 if grid_size == "medium" else 10)
+    # Supersampling Canvas Frame. Legacy sizes were severely bound (20, 15, 10). 
+    # Raising to 40px grid baseline forces Python/Pillow to calculate circle radii with 
+    # vastly expanded decimal precision, eliminating the 33% area-jump banding flaws.
+    cell_size = 80 if grid_size == "easy" else (60 if grid_size == "medium" else 40)
     
-    # 1. Main Grid (Answer, Puzzle, Empty)
-    ans_img, puz_main_img, puz_empty_img = generate_grid_images(
-        enhanced_gray, cols, rows, cell_size, 
-        make_answer=True, make_puzzle=True, make_empty=True
-    )
+    # 1. Main Grids for both styles
+    ans_pattern, puz_pattern, puz_empty = generate_grid_images(enhanced_gray, cols, rows, cell_size, "pattern", make_empty=True)
+    ans_circle, puz_circle, _ = generate_grid_images(enhanced_gray, cols, rows, cell_size, "circles")
     
-    # 2. Half Grid (Puzzle only)
+    # 2. Half Grid Simpler Puzzle
     half_cell_size = cell_size * 2
     half_cols, half_rows = max(1, cols // 2), max(1, rows // 2)
-    _, puz_half_img, _ = generate_grid_images(
-        enhanced_gray, half_cols, half_rows, half_cell_size,
-        make_answer=False, make_puzzle=True, make_empty=False
-    )
+    _, puz_half, _ = generate_grid_images(enhanced_gray, half_cols, half_rows, half_cell_size, "pattern")
     
-    # 3. Apply Watermarks to Previews to prevent free download
-    from PIL import ImageDraw
-    def apply_watermark(img):
-        watermarked = img.copy()
-        draw = ImageDraw.Draw(watermarked)
-        w_img, h_img = img.size
-        for i in range(-h_img, w_img, 250):
-            draw.line([(i, 0), (i+h_img, h_img)], fill=230, width=5)
-            draw.line([(i, h_img), (i+h_img, 0)], fill=230, width=5)
-        return watermarked
-
-    puz_main_img = apply_watermark(puz_main_img)
-    puz_half_img = apply_watermark(puz_half_img)
+    # 3. Save Pristine PNGs 
+    puz_pat_path = os.path.join(job_dir, "puzzle_pattern.png")
+    puz_cir_path = os.path.join(job_dir, "puzzle_circle.png")
+    puz_half_path = os.path.join(job_dir, "puzzle_half.png")
+    puz_empty_path = os.path.join(job_dir, "puzzle_empty.png")
     
-    # Save PNGs
-    answer_path = os.path.join(job_dir, "answer.png")
-    puzzle_main_path = os.path.join(job_dir, "preview.png")
-    puzzle_half_path = os.path.join(job_dir, "preview_half.png")
-    puzzle_empty_path = os.path.join(job_dir, "preview_empty.png")
+    puz_pattern.save(puz_pat_path)
+    puz_circle.save(puz_cir_path)
+    puz_half.save(puz_half_path)
+    puz_empty.save(puz_empty_path)
     
-    ans_img.save(answer_path)
-    puz_main_img.save(puzzle_main_path)
-    puz_half_img.save(puzzle_half_path)
-    puz_empty_img.save(puzzle_empty_path)
+    # 3. Generate Guide Images
+    guide_pat_path = os.path.join(job_dir, "guide_pattern.png")
+    render_guide().save(guide_pat_path)
+    guide_cir_path = os.path.join(job_dir, "guide_circle.png")
+    render_circle_guide().save(guide_cir_path)
     
-    # Generate Guide Image
-    guide_img = render_circle_guide() if style == "circles" else render_guide()
-    guide_path = os.path.join(job_dir, "guide.png")
-    guide_img.save(guide_path)
-    
-    # Generate 4-Page PDF
+    # 5. Generate the Unified 5-Page PDF
     pdf_path = os.path.join(job_dir, "puzzle.pdf")
     create_puzzle_pdf(
         pdf_path=pdf_path,
         title=title,
         subtitle=subtitle,
-        guide_img_path=guide_path,
-        puzzle_main_path=puzzle_main_path,
-        puzzle_half_path=puzzle_half_path,
-        puzzle_empty_path=puzzle_empty_path
+        guide_pattern_path=guide_pat_path,
+        guide_circle_path=guide_cir_path,
+        blueprint_pattern_path=puz_pat_path,
+        blueprint_circle_path=puz_cir_path,
+        blueprint_half_path=puz_half_path,
+        blueprint_empty_path=puz_empty_path
     )
     
-    # Make URLs relative to outputs directory mounted in server
+    # 6. Generate Master Answer Key (Composite)
+    w, h = ans_pattern.size
+    composite = Image.new("L", (w * 2 + 40, h), color=255)
+    composite.paste(ans_pattern, (0, 0))
+    composite.paste(ans_circle, (w + 40, 0))
+    
+    answer_master_path = os.path.join(job_dir, "answer_key.png")
+    composite.save(answer_master_path)
+    
+    from PIL import ImageDraw
+    def apply_watermark(img):
+        watermarked = img.copy()
+        draw = ImageDraw.Draw(watermarked)
+        w_img, h_img = img.size
+        # Draw huge diagonal slash marks as watermark
+        for i in range(-h_img, w_img, 350):
+            draw.line([(i, 0), (i+h_img, h_img)], fill=230, width=5)
+            draw.line([(i, h_img), (i+h_img, 0)], fill=230, width=5)
+        return watermarked
+
+    preview_web_path = os.path.join(job_dir, "preview_web.png")
+    apply_watermark(composite).save(preview_web_path)
+    
     return {
         "job_id": job_id,
-        "preview_url": f"/outputs/{job_id}/preview.png",
-        "answer_url": f"/outputs/{job_id}/answer.png",
+        "preview_url": f"/outputs/{job_id}/preview_web.png",
+        "answer_url": f"/outputs/{job_id}/answer_key.png",
         "pdf_url": f"/outputs/{job_id}/puzzle.pdf"
     }

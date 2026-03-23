@@ -33,11 +33,10 @@ def health_check():
 @app.post("/api/generate")
 async def generate_puzzle(
     image: UploadFile = File(...),
-    grid_size: str = Form("medium"),
+
     title: str = Form("Reveal Your Photo Puzzle"),
     subtitle: str = Form(""),
-    orientation: str = Form("portrait"),
-    style: str = Form("pattern")
+    orientation: str = Form("portrait")
 ):
     if not image.content_type.startswith("image/"):
         raise HTTPException(status_code=400, detail="Uploaded file is not an image.")
@@ -46,26 +45,98 @@ async def generate_puzzle(
         # Read image data
         image_bytes = await image.read()
         
-        # Validate grid size
-        if grid_size not in ["easy", "medium", "detailed"]:
-            grid_size = "medium"
-
         # Initialize job
         job_id = generate_job_id()
         
         # Process image and generate assets
-        result = process_image(
-            job_id=job_id,
-            image_bytes=image_bytes,
-            grid_size=grid_size,
-            title=title,
-            subtitle=subtitle,
-            orientation=orientation,
-            style=style
-        )
+        from PIL import UnidentifiedImageError
+        try:
+            result = process_image(
+                job_id=job_id,
+                image_bytes=image_bytes,
+                title=title,
+                subtitle=subtitle,
+                orientation=orientation
+            )
+        except UnidentifiedImageError:
+            raise HTTPException(status_code=400, detail="Unsupported image format. Please upload a standard JPG, PNG, or WEBP file.")
         
         return JSONResponse(content=result)
         
+    except HTTPException:
+        raise
     except Exception as e:
         print(f"Error processing image: {e}")
         raise HTTPException(status_code=500, detail="Internal server error during puzzle generation.")
+
+import stripe
+from fastapi import Request, BackgroundTasks
+from email_sender import send_puzzle_email
+
+@app.post("/api/webhook")
+async def stripe_webhook(request: Request, background_tasks: BackgroundTasks):
+    from dotenv import load_dotenv
+    load_dotenv()
+    
+    payload = await request.body()
+    sig_header = request.headers.get("stripe-signature")
+    
+    stripe.api_key = os.getenv("STRIPE_API_KEY")
+    webhook_secret = os.getenv("STRIPE_WEBHOOK_SECRET")
+    
+    if not webhook_secret or not stripe.api_key:
+        print("Webhook called but Stripe keys are missing from .env")
+        return {"status": "unconfigured"}
+        
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, webhook_secret
+        )
+    except ValueError as e:
+        print("Invalid webhook payload")
+        raise HTTPException(status_code=400, detail="Invalid payload")
+    except stripe.error.SignatureVerificationError as e:
+        print("Invalid webhook signature")
+        raise HTTPException(status_code=400, detail="Invalid signature")
+
+    if event['type'] == 'checkout.session.completed':
+        session = event['data']['object']
+        
+        job_id = session.get("metadata", {}).get("job_id")
+        customer_email = session.get("customer_details", {}).get("email")
+        customer_name = session.get("customer_details", {}).get("name")
+        
+        print(f"Payment successful for job {job_id} ({customer_email})")
+        
+        if job_id and customer_email:
+            background_tasks.add_task(
+                send_puzzle_email,
+                job_id=job_id,
+                customer_email=customer_email,
+                customer_name=customer_name
+            )
+            
+    return {"status": "success"}
+
+from pydantic import BaseModel
+
+class EmailRequest(BaseModel):
+    job_id: str
+    email: str
+
+@app.post("/api/resend_email")
+async def manual_send_email(req: EmailRequest):
+    """ Developer endpoint to test email delivery synchronously without Stripe payment """
+    import logging
+    from email_sender import send_puzzle_email
+    
+    success = await send_puzzle_email(
+        job_id=req.job_id,
+        customer_email=req.email,
+        customer_name="Test User"
+    )
+    
+    if success:
+        return {"status": "success"}
+    else:
+        raise HTTPException(status_code=500, detail="SMTP Connection Failed - Check server logs")

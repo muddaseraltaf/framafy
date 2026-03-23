@@ -8,54 +8,67 @@ def create_puzzle_pdf(
     pdf_path: str,
     title: str,
     subtitle: str,
-    guide_img_path: str,
-    puzzle_main_path: str,
-    puzzle_half_path: str,
-    puzzle_empty_path: str
+    guide_pattern_path: str,
+    guide_circle_path: str,
+    blueprint_pattern_path: str,
+    blueprint_circle_path: str,
+    blueprint_half_path: str,
+    blueprint_empty_path: str
 ):
     """
-    Creates an A4 PDF containing the puzzle layouts across 4 pages.
+    Creates an A4 PDF containing the ultimate puzzle bundle.
+    Page 1: Unified Guide
+    Page 2: Pattern Blueprint
+    Page 3: Halftone Blueprint
+    Page 4: Simpler Pattern Blueprint (Half-Res)
+    Page 5: Empty Grid Outline
     """
     width, height = A4
     c = canvas.Canvas(pdf_path, pagesize=A4)
     
     def draw_grid_page(img_path):
-        # The grid images should have maximum real estate since text is removed
+        if not os.path.exists(img_path): return
         c.drawImage(
             img_path,
             0.5 * inch, 0.5 * inch,
             width=width - 1 * inch,
-            height=height - 1 * inch, # Increased height since title is gone
+            height=height - 1 * inch,
             preserveAspectRatio=True,
-            anchor='c' # center
+            anchor='c'
         )
         c.showPage()
     
-    # --- PAGE 1: TITLE & MAIN GRID ---
-    draw_grid_page(puzzle_main_path)
+    # --- PAGE 1: INSTRUCTIONS & DUAL GUIDE ---
+    c.setFont("Helvetica-Bold", 24)
+    c.drawCentredString(width / 2.0, height - 1.5 * inch, title)
     
-    # --- PAGE 2: HALF SIZE GRID ---
-    draw_grid_page(puzzle_half_path)
-    
-    # --- PAGE 3: INSTRUCTIONS & GUIDE ---
     c.setFont("Helvetica", 14)
-    # Print the subtitle acting as instructions here if provided, else fallback
-    c.drawCentredString(width / 2.0, height - 2 * inch, subtitle or "Color in the grid using the pattern guide to reveal the picture!")
+    c.drawCentredString(width / 2.0, height - 2 * inch, subtitle or "The ultimate custom photo puzzle package.")
+    
+    c.setFont("Helvetica", 12)
+    c.drawCentredString(width / 2.0, height - 3 * inch, "Choose your favorite style or challenge yourself with the simpler grid!")
     
     # Pattern Guide Image
-    guide_w, guide_h = 400, 60
-    c.drawImage(
-        guide_img_path, 
-        (width - guide_w) / 2.0, height - 3.5 * inch, 
-        width=guide_w, height=guide_h, 
-        preserveAspectRatio=True
-    )
+    c.setFont("Helvetica-Bold", 14)
+    c.drawCentredString(width / 2.0, height - 4.5 * inch, "Style 1: Classic Patterns")
+    c.setFont("Helvetica", 11)
+    c.drawCentredString(width / 2.0, height - 4.8 * inch, "Draw the shape assigned to the number in the grid.")
+    c.drawImage(guide_pattern_path, (width - 350) / 2.0, height - 6 * inch, width=350, height=50, preserveAspectRatio=True)
+    
+    # Circle Guide Image
+    c.setFont("Helvetica-Bold", 14)
+    c.drawCentredString(width / 2.0, height - 7.5 * inch, "Style 2: Halftone Circles")
+    c.setFont("Helvetica", 11)
+    c.drawCentredString(width / 2.0, height - 7.8 * inch, "Simply trace or color inside the faint circle outlines.")
+    c.drawImage(guide_circle_path, (width - 350) / 2.0, height - 9 * inch, width=350, height=50, preserveAspectRatio=True)
     
     c.showPage()
     
-    # --- PAGE 4: EMPTY GRID ---
-    draw_grid_page(puzzle_empty_path)
+    # --- PAGE 2, 3, 4, 5: BLUEPRINTS ---
+    draw_grid_page(blueprint_pattern_path)
+    draw_grid_page(blueprint_circle_path)
+    draw_grid_page(blueprint_half_path)
+    draw_grid_page(blueprint_empty_path)
     
     c.save()
-    
     return pdf_path

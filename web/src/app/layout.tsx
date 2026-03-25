@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Testimonials from "@/components/Testimonials";
 import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -53,6 +54,8 @@ export default function RootLayout({
         <main className="flex-1 container mx-auto px-4 py-8 max-w-5xl">
           {children}
         </main>
+
+        <Testimonials />
 
         <footer className="border-t border-neutral-200 bg-white p-10 mt-20">
           <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-sm">

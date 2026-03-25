@@ -24,6 +24,8 @@ export async function POST(req: Request) {
         title = "Ready-Made: " + product.title;
         price = product.price * 100;
       }
+    } else if (type === "seo") {
+      title = "Ready-Made Kit: " + id.replace(/-/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase());
     }
 
     if (!process.env.STRIPE_SECRET_KEY || process.env.STRIPE_SECRET_KEY === "sk_test_mock") {

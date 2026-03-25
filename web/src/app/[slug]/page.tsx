@@ -74,8 +74,8 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
       />
       
       {/* Hero Section */}
-      <section className="text-center space-y-10 max-w-5xl mx-auto pt-10 px-4 mb-20">
-        <div className="space-y-6">
+      <section className="max-w-5xl mx-auto pt-10 px-4 mb-20">
+        <div className="text-center space-y-6 mb-12">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-neutral-900 leading-[1.1]">
             {page.headline}
           </h1>
@@ -84,16 +84,43 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
           </p>
         </div>
         
-        <div className="flex justify-center pt-2 pb-8">
-          <CheckoutButton slug={page.slug} label={page.cta || "Get Both Versions Now - $8.99"} />
-        </div>
+        <div className="bg-white rounded-[2rem] p-8 md:p-12 border border-neutral-100 shadow-2xl space-y-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16">
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold text-neutral-800">Final Reveal Preview</h3>
+              <div className="aspect-[3/4] bg-neutral-50 rounded-2xl border border-neutral-200 flex items-center justify-center overflow-hidden relative shadow-inner">
+                <img src={page.imageUrl} alt={page.metaTitle} className="w-full h-full object-contain p-4 mix-blend-multiply" />
+              </div>
+            </div>
 
-        <div className="relative w-full max-w-3xl mx-auto aspect-[16/9] md:aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl border border-neutral-200/50">
-          <img 
-            src={page.imageUrl} 
-            alt={page.metaTitle} 
-            className="w-full h-full object-cover"
-          />
+            <div className="space-y-6 flex flex-col justify-center">
+              <div className="space-y-4 mb-4">
+                <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 leading-tight">{page.h1}</h2>
+                <div className="flex items-center gap-4">
+                   <p className="text-3xl text-neutral-900 font-black">$8.99</p>
+                   <span className="px-3 py-1 bg-purple-100 text-purple-700 text-sm font-bold rounded-full">Double Value Bundle</span>
+                </div>
+              </div>
+              
+              <ul className="space-y-5 text-neutral-600 mb-8 text-lg">
+                <li className="flex gap-4 items-center font-medium">
+                  <span className="text-emerald-500 text-2xl">✓</span> Instant High-Res PDF Download
+                </li>
+                <li className="flex gap-4 items-start font-medium bg-neutral-50 p-4 rounded-xl border border-neutral-100">
+                  <span className="text-emerald-500 text-2xl mt-1">✓</span> 
+                  <span>Buy 1, Get Both Styles:<br/><span className="text-sm font-light text-neutral-500">Dot Painting + Grid Painting Included</span></span>
+                </li>
+                <li className="flex gap-4 items-center font-medium">
+                  <span className="text-emerald-500 text-2xl">✓</span> Revealed &quot;Answer Key&quot; reference
+                </li>
+              </ul>
+
+              <div className="mt-8 pt-4 border-t border-neutral-100">
+                 <CheckoutButton slug={page.slug} label="Checkout with Stripe" />
+                 <p className="text-center text-xs text-neutral-400 mt-4">Secure payment processing. Files are delivered instantly.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

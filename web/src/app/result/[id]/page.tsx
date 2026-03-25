@@ -106,7 +106,7 @@ export default function ResultPage() {
           <div className="space-y-6 flex flex-col justify-center">
             <div className="space-y-4 mb-4">
               <h2 className="text-3xl font-bold text-neutral-900">Custom Portrait Puzzle</h2>
-              <p className="text-xl text-neutral-500 font-semibold">$10.00 USD</p>
+              <p className="text-xl text-neutral-500 font-semibold">$8.99 USD</p>
             </div>
             
             <ul className="space-y-3 text-neutral-600 mb-8">

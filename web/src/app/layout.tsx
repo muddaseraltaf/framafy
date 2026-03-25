@@ -6,11 +6,11 @@ import Link from "next/link";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "Pictoru | Turn Your Photo Into Meaningful Art",
-  description: "The premium diamond painting alternative. Upload your favorite photo to instantly generate a stunning, printable pattern puzzle. Relax, unwind, and create truly personal art.",
+  title: "Dot Painting & Grid Art Kits | DIY Art Kits | Pictoru",
+  description: "Unwind and get creative with Pictoru’s dot painting and paint-by-grid kits. Perfect DIY art kits for adults and beginners. Start relaxing today!",
   openGraph: {
-    title: "Pictoru | Turn Your Photo Into Meaningful Art",
-    description: "The premium diamond painting alternative. Upload your favorite photo to instantly generate a stunning, printable pattern puzzle. Relax, unwind, and create truly personal art.",
+    title: "Dot Painting & Grid Art Kits | DIY Art Kits | Pictoru",
+    description: "Unwind and get creative with Pictoru’s dot painting and paint-by-grid kits. Perfect DIY art kits for adults and beginners. Start relaxing today!",
     url: "https://pictoru.com",
     siteName: "Pictoru",
     locale: "en_US",
@@ -18,8 +18,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pictoru | Turn Your Photo Into Meaningful Art",
-    description: "The premium diamond painting alternative. Upload your favorite photo to instantly generate a stunning, printable pattern puzzle. Relax, unwind, and create truly personal art.",
+    title: "Dot Painting & Grid Art Kits | DIY Art Kits | Pictoru",
+    description: "Unwind and get creative with Pictoru’s dot painting and paint-by-grid kits. Perfect DIY art kits for adults and beginners. Start relaxing today!",
   },
 };
 
@@ -54,8 +54,41 @@ export default function RootLayout({
           {children}
         </main>
 
-        <footer className="border-t border-neutral-200 bg-white p-6 mt-12">
-          <div className="container mx-auto text-center text-sm text-neutral-500">
+        <footer className="border-t border-neutral-200 bg-white p-10 mt-20">
+          <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-sm">
+            <div>
+              <h3 className="font-bold text-neutral-900 mb-4 text-lg">Pictoru Collections</h3>
+              <ul className="space-y-2 text-neutral-600">
+                <li><Link href="/dot-painting-flowers" className="hover:text-purple-600">Dot Painting Flowers</Link></li>
+                <li><Link href="/sunflower-dot-painting" className="hover:text-purple-600">Sunflower Dot Painting</Link></li>
+                <li><Link href="/butterfly-flower-dot-painting" className="hover:text-purple-600">Butterfly & Flowers Combo</Link></li>
+                <li><Link href="/buddha-dot-painting" className="hover:text-purple-600">Buddha Painting Kit</Link></li>
+                <li><Link href="/relaxing-dot-painting" className="hover:text-purple-600">Mandala Relaxation Art</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-bold text-neutral-900 mb-4 text-lg">Animal & Nature Kits</h3>
+              <ul className="space-y-2 text-neutral-600">
+                <li><Link href="/cat-dot-painting" className="hover:text-purple-600">Cat Dot Painting</Link></li>
+                <li><Link href="/dog-dot-painting" className="hover:text-purple-600">Dog Dot Painting</Link></li>
+                <li><Link href="/owl-dot-painting" className="hover:text-purple-600">Owl Dot Painting</Link></li>
+                <li><Link href="/eagle-dot-painting" className="hover:text-purple-600">Eagle Dot Painting</Link></li>
+                <li><Link href="/dot-painting-butterfly" className="hover:text-purple-600">Butterfly Dot Painting</Link></li>
+                <li><Link href="/landscape-dot-painting" className="hover:text-purple-600">Peaceful Landscape</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-bold text-neutral-900 mb-4 text-lg">Get Started</h3>
+              <ul className="space-y-2 text-neutral-600">
+                <li><Link href="/dot-painting-for-beginners" className="hover:text-purple-600">Dot Painting for Beginners</Link></li>
+                <li><Link href="/paint-by-grid" className="hover:text-purple-600">Grid Painting Guide</Link></li>
+                <li><Link href="/diy-art-kits-for-adults" className="hover:text-purple-600">DIY Art Kits for Adults</Link></li>
+                <li><Link href="/custom-photo-dot-painting" className="hover:text-purple-600">Custom Photo Kit</Link></li>
+                <li><Link href="/#collection" className="hover:text-purple-600">Browse All Patterns</Link></li>
+              </ul>
+            </div>
+          </div>
+          <div className="container mx-auto border-t border-neutral-100 pt-6 text-center text-sm text-neutral-500">
             &copy; {new Date().getFullYear()} Pictoru. All rights reserved.
           </div>
         </footer>

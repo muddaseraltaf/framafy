@@ -140,3 +140,73 @@ async def manual_send_email(req: EmailRequest):
         return {"status": "success"}
     else:
         raise HTTPException(status_code=500, detail="SMTP Connection Failed - Check server logs")
+
+
+# ==========================================
+# AR Balloon Feature API Endpoints
+# ==========================================
+import qrcode
+from typing import List
+
+@app.post("/api/ar/upload")
+async def ar_upload(
+    photos: List[UploadFile] = File(...),
+    frontend_url: str = Form("https://pictoru.com")
+):
+    """
+    Accepts 1-10 photos, saves them to a public output directory,
+    and intelligently generates a QR code redirecting the physical mobile client
+    to the 3D WebAR viewer experience.
+    """
+    try:
+        from puzzle.utils import generate_job_id
+        ar_id = f"ar_{generate_job_id()}"
+        ar_dir = os.path.join(output_dir, ar_id)
+        os.makedirs(ar_dir, exist_ok=True)
+        
+        photo_urls = []
+        for i, photo in enumerate(photos):
+            if not photo.content_type.startswith("image/"):
+                continue
+            ext = photo.filename.split('.')[-1]
+            safe_name = f"photo_{i}.{ext}"
+            file_path = os.path.join(ar_dir, safe_name)
+            
+            with open(file_path, "wb") as f:
+                f.write(await photo.read())
+            
+            photo_urls.append(f"/outputs/{ar_id}/{safe_name}")
+            
+        if not photo_urls:
+            raise HTTPException(status_code=400, detail="No valid images uploaded.")
+            
+        # Create precisely targeted physical trigger marker
+        target_link = f"{frontend_url.rstrip('/')}/ar/view/{ar_id}"
+        
+        qr = qrcode.QRCode(version=2, box_size=12, border=2)
+        qr.add_data(target_link)
+        qr.make(fit=True)
+        img = qr.make_image(fill_color="black", back_color="white")
+        
+        qr_path = os.path.join(ar_dir, "qrcode.png")
+        img.save(qr_path)
+        
+        # Manifest for the A-Frame Client
+        import json
+        with open(os.path.join(ar_dir, "manifest.json"), "w") as f:
+            json.dump({
+                "photos": photo_urls, 
+                "qr_url": f"/outputs/{ar_id}/qrcode.png", 
+                "target_link": target_link
+            }, f)
+            
+        return {
+            "ar_id": ar_id, 
+            "qr_url": f"/outputs/{ar_id}/qrcode.png", 
+            "photos": photo_urls,
+            "target_link": target_link
+        }
+        
+    except Exception as e:
+        print(f"Error in AR upload mapping: {e}")
+        raise HTTPException(status_code=500, detail="Error generating AR artifact mappings.")

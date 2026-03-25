@@ -43,6 +43,7 @@ export default function RootLayout({
             <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-neutral-600">
               <Link href="/#collection" className="hover:text-purple-600 transition-colors">Ready-Made Puzzles</Link>
               <Link href="/create" className="hover:text-purple-600 transition-colors">Custom Portrait</Link>
+              <Link href="/ar-gift" className="hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-600 font-bold transition-all text-purple-700">✨ AR Balloons</Link>
               <Link href="/my-puzzles" className="hover:text-purple-600 transition-colors">My Puzzles</Link>
             </nav>
             <Link href="/create" className="md:hidden text-sm font-medium bg-gradient-to-r from-pink-500 to-purple-600 text-white px-5 py-2.5 rounded-full shadow-md">

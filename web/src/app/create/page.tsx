@@ -59,6 +59,7 @@ export default function CreatePuzzle() {
 
   const handleDragOver = (e: React.DragEvent) => e.preventDefault();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onCropComplete = useCallback((croppedArea: any, croppedAreaPixels: any) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
@@ -91,8 +92,9 @@ export default function CreatePuzzle() {
       const result = await generatePuzzle(croppedFile, title, subtitle, orientation);
       sessionStorage.setItem(`puzzle_${result.job_id}`, JSON.stringify(result));
       router.push(`/result/${result.job_id}`);
-    } catch (err: any) {
-      setError(err.message || "Something went wrong.");
+    } catch (err: unknown) {
+      const error = err as Error;
+      setError(error.message || "Something went wrong.");
       setIsSubmitting(false);
     }
   };

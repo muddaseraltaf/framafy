@@ -4,30 +4,38 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { GenerateResponse } from "@/lib/api";
+import { landingPages } from "@/data/landingPages";
 
 export default function SuccessDownloadPage() {
   const params = useParams();
   const router = useRouter();
   const id = params.id as string;
-  const [data, setData] = useState<GenerateResponse | null>(null);
+  const [data, setData] = useState<GenerateResponse | null>(() => {
+    if (typeof window !== 'undefined') {
+      if (id.startsWith("puz-")) {
+        return { job_id: id, preview_url: "", answer_url: "", pdf_url: "/mock-ready-made-puzzle.pdf" };
+      }
+      const seoPage = landingPages.find(p => p.slug === id);
+      if (seoPage) {
+        return {
+          job_id: id,
+          preview_url: seoPage.imageUrl || "", 
+          answer_url: `/downloads/${id}/answer_key.png`,
+          pdf_url: `/downloads/${id}/puzzle.pdf`
+        };
+      }
+    }
+    return null;
+  });
 
   useEffect(() => {
-    // For Custom puzzles, data is in session storage.
-    // For Ready-Made puzzles, we would usually fetch the static PDF from an S3 bucket or public folder.
-    // For this MVP, if it's a ready-made product ID (e.g. "puz-lion"), we just show a hardcoded mock PDF button
-    // since we don't have python-generated assets for them yet.
-    if (id.startsWith("puz-")) {
-       setData({
-         job_id: id,
-         preview_url: "",
-         answer_url: "",
-         pdf_url: "/mock-ready-made-puzzle.pdf" // Placeholder
-       });
-       return;
-    }
+    if (id.startsWith("puz-")) return;
+    const isSEOMade = landingPages.some(p => p.slug === id);
+    if (isSEOMade) return;
 
     const stored = sessionStorage.getItem(`puzzle_${id}`);
     if (stored) {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       setData(JSON.parse(stored));
     } else {
       router.push("/");

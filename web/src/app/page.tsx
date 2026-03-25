@@ -72,7 +72,7 @@ export default function Home() {
       <section className="max-w-4xl mx-auto text-center px-4 space-y-6">
         <h2 className="text-3xl font-bold tracking-tight text-neutral-900">Unleash Your Creativity with Modern DIY Art Kits</h2>
         <p className="text-lg text-neutral-600 leading-relaxed font-light">
-          Welcome to Pictoru, your new favorite way to disconnect from screens and reconnect with your creativity. Whether you're looking for a relaxing weekend activity or a unique gift, our <strong>DIY art kits for adults</strong> make it incredibly simple to create stunning artwork from scratch. We specialize in two mindful, beginner-friendly art forms: dot painting and paint-by-grid art. No messy paints, no complicated instructions—just pure, relaxing creativity.
+          Welcome to Pictoru, your new favorite way to disconnect from screens and reconnect with your creativity. Whether you&apos;re looking for a relaxing weekend activity or a unique gift, our <strong>DIY art kits for adults</strong> make it incredibly simple to create stunning artwork from scratch. We specialize in two mindful, beginner-friendly art forms: dot painting and paint-by-grid art. No messy paints, no complicated instructions—just pure, relaxing creativity.
         </p>
       </section>
 
@@ -146,7 +146,7 @@ export default function Home() {
         
         <div className="text-lg text-neutral-600 leading-relaxed font-light space-y-6">
           <p>
-            Creating art isn't just about the final product; it’s about the journey. Our kits are intentionally designed to promote mindfulness and stress relief. Engaging in repetitive, focused activities like dotting or filling in a grid requires just enough attention to quiet racing thoughts, but not enough to cause mental fatigue.
+            Creating art isn&apos;t just about the final product; it’s about the journey. Our kits are intentionally designed to promote mindfulness and stress relief. Engaging in repetitive, focused activities like dotting or filling in a grid requires just enough attention to quiet racing thoughts, but not enough to cause mental fatigue.
           </p>
           <p>
             It is a form of active meditation. Taking just 30 minutes a day to work on your Pictoru canvas can significantly lower stress levels, improve concentration, and boost your mood. Give yourself the gift of a creative break as an <Link href="/" className="text-purple-600 hover:underline">alternative to diamond painting</Link>, and discover why thousands are turning to Pictoru for their daily dose of relaxation.

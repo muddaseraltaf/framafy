@@ -19,9 +19,11 @@ export default function ResultPage() {
     if (typeof window !== "undefined") {
       const search = new URLSearchParams(window.location.search);
       if (search.get("success") === "true" || search.get("bypass") === "true") {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         setIsUnlocked(true);
       }
       if (search.get("bypass") === "true") {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         setIsBypass(true);
       }
     }
@@ -115,7 +117,7 @@ export default function ResultPage() {
                 <span className="text-emerald-500">✓</span> 4 Pages including patterns & empty grids
               </li>
               <li className="flex gap-3 items-center">
-                <span className="text-emerald-500">✓</span> Revealed "Answer Key" image
+                <span className="text-emerald-500">✓</span> Revealed &quot;Answer Key&quot; image
               </li>
             </ul>
 

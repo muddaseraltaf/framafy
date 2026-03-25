@@ -49,7 +49,7 @@ export default function Home() {
             href="/create" 
             className="w-full sm:w-auto px-10 py-5 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold text-lg rounded-full hover:opacity-90 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1"
           >
-            Shop Beginner Kits
+            Add Your Photo
           </Link>
           <Link 
             href="/#collection" 

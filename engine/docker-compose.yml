@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: pictoru-engine
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./outputs:/app/outputs
+    restart: always
+    env_file:
+      - .env

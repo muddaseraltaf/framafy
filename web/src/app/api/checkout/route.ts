@@ -16,7 +16,7 @@ export async function POST(req: Request) {
     const domain = `${protocol}://${host}`;
 
     let title = "Custom Puzzle Reveal";
-    let price = 1000; // $10.00 flat rate
+    let price = 899; // $8.99 flat rate
 
     if (type === "readymade") {
       const product = readyMadeProducts.find(p => p.id === id);

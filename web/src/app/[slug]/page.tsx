@@ -73,23 +73,33 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       
-      {/* Hero Section */}
+      {/* Primary Hero Section */}
       <section className="max-w-5xl mx-auto pt-10 px-4 mb-20">
         <div className="text-center space-y-6 mb-12">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-neutral-900 leading-[1.1]">
             {page.headline}
           </h1>
-          <p className="text-xl md:text-2xl text-neutral-600 leading-relaxed font-light max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-neutral-600 leading-relaxed font-light max-w-3xl mx-auto mb-10">
             {page.subheadline}
           </p>
         </div>
         
+        {page.unsplashUrl && (
+          <div className="relative w-full max-w-5xl mx-auto aspect-video md:aspect-[21/9] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white mb-20">
+            <img 
+              src={page.unsplashUrl} 
+              alt={page.metaTitle} 
+              className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+            />
+          </div>
+        )}
+        
         <div className="bg-white rounded-[2rem] p-8 md:p-12 border border-neutral-100 shadow-2xl space-y-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16">
             <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-neutral-800">Final Reveal Preview</h3>
-              <div className="aspect-[3/4] bg-neutral-50 rounded-2xl border border-neutral-200 flex items-center justify-center overflow-hidden relative shadow-inner">
-                <img src={page.imageUrl} alt={page.metaTitle} className="w-full h-full object-contain p-4 mix-blend-multiply" />
+              <h3 className="text-2xl font-bold text-neutral-800 tracking-tight">Pattern Preview</h3>
+              <div className="aspect-video bg-neutral-50 rounded-2xl border-2 border-neutral-100 flex items-center justify-center overflow-hidden relative shadow-inner">
+                <img src={page.imageUrl} alt={page.metaTitle} className="w-full h-full object-contain p-2 mix-blend-multiply" />
               </div>
             </div>
 

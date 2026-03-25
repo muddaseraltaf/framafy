@@ -23,10 +23,10 @@ export default function ProductCard({ product }: { product: Product }) {
         <p className="text-neutral-500 text-sm mb-6 flex-1">{product.description}</p>
         
         <Link 
-          href={`/checkout/${product.id}`}
+          href={`/${product.id}`}
           className="w-full text-center py-3 bg-neutral-900 text-white font-medium rounded-xl hover:bg-neutral-800 transition-colors"
         >
-          Buy Now
+          View Artwork Details
         </Link>
       </div>
     </div>

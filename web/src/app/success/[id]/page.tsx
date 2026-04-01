@@ -29,6 +29,12 @@ export default function SuccessDownloadPage() {
   });
 
   useEffect(() => {
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      (window as any).fbq('track', 'Purchase', { currency: 'USD', value: 8.99 });
+    }
+  }, []);
+
+  useEffect(() => {
     if (id.startsWith("puz-")) return;
     const isSEOMade = landingPages.some(p => p.slug === id);
     if (isSEOMade) return;

@@ -21,6 +21,11 @@ export default function ResultPage() {
       if (search.get("success") === "true" || search.get("bypass") === "true") {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         setIsUnlocked(true);
+        if (search.get("success") === "true") {
+          if (typeof window !== "undefined" && (window as any).fbq) {
+            (window as any).fbq('track', 'Purchase', { currency: 'USD', value: 8.99 });
+          }
+        }
       }
       if (search.get("bypass") === "true") {
         // eslint-disable-next-line react-hooks/exhaustive-deps

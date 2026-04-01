@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Testimonials from "@/components/Testimonials";
 import Link from "next/link";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -32,6 +33,23 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="min-h-screen flex flex-col font-sans selection:bg-purple-600 selection:text-white">
+        <Script id="meta-pixel" strategy="afterInteractive">
+          {`
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '1687611445923570');
+            fbq('track', 'PageView');
+          `}
+        </Script>
+        <noscript>
+          <img height="1" width="1" style={{ display: 'none' }} src="https://www.facebook.com/tr?id=1687611445923570&ev=PageView&noscript=1" alt="" />
+        </noscript>
         <header className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-white/80 backdrop-blur">
           <div className="container mx-auto px-4 h-16 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2 group hover:opacity-90 transition-opacity">
@@ -43,7 +61,6 @@ export default function RootLayout({
             <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-neutral-600">
               <Link href="/#collection" className="hover:text-purple-600 transition-colors">Ready-Made Puzzles</Link>
               <Link href="/create" className="hover:text-purple-600 transition-colors">Custom Portrait</Link>
-              <Link href="/ar-gift" className="hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-600 font-bold transition-all text-purple-700">✨ AR Balloons</Link>
               <Link href="/my-puzzles" className="hover:text-purple-600 transition-colors">My Puzzles</Link>
             </nav>
             <Link href="/create" className="md:hidden text-sm font-medium bg-gradient-to-r from-pink-500 to-purple-600 text-white px-5 py-2.5 rounded-full shadow-md">

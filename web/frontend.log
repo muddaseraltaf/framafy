@@ -1,0 +1,20 @@
+
+> web@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.0 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.70.130:3000
+✓ Ready in 291ms
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /Users/muddaseraltaf/Muddaser/Projects/antigravity/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /Users/muddaseraltaf/Muddaser/Projects/antigravity/photo project/photo-puzzle-mvp/web/package-lock.json
+
+
+ GET /ar-gift 200 in 902ms (next.js: 745ms, application-code: 157ms)
+ GET /ar-gift 200 in 54ms (next.js: 9ms, application-code: 45ms)
+ GET /ar-gift 200 in 46ms (next.js: 4ms, application-code: 41ms)
+ GET /ar/result/ar_5c5293ce-380c-4a95-9fe6-a4717b0b3bb5 200 in 728ms (next.js: 706ms, application-code: 22ms)

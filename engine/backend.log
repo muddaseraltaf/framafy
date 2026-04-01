@@ -1,21 +1,6 @@
-INFO:     Started server process [94026]
+INFO:     Started server process [70156]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     127.0.0.1:51812 - "POST /api/generate HTTP/1.1" 200 OK
-INFO:     127.0.0.1:51818 - "GET /outputs/6f3275c5-faa6-44a1-8c92-25b4b975e1ea/preview.png HTTP/1.1" 200 OK
-INFO:     127.0.0.1:51819 - "GET /outputs/6f3275c5-faa6-44a1-8c92-25b4b975e1ea/answer.png HTTP/1.1" 200 OK
-INFO:     127.0.0.1:51825 - "GET /outputs/6f3275c5-faa6-44a1-8c92-25b4b975e1ea/answer.png HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63908 - "POST /api/generate HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63912 - "GET /outputs/11b7b80e-f536-4bdc-9f8a-4a56d7513dfc/answer.png HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63910 - "GET /outputs/11b7b80e-f536-4bdc-9f8a-4a56d7513dfc/preview.png HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63916 - "GET /outputs/11b7b80e-f536-4bdc-9f8a-4a56d7513dfc/answer.png HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63918 - "GET /outputs/11b7b80e-f536-4bdc-9f8a-4a56d7513dfc/puzzle.pdf HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63931 - "POST /api/generate HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63933 - "GET /outputs/f2391e45-bea8-43ed-a1bb-ae323e6b7329/preview.png HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63935 - "GET /outputs/f2391e45-bea8-43ed-a1bb-ae323e6b7329/answer.png HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63939 - "GET /outputs/f2391e45-bea8-43ed-a1bb-ae323e6b7329/answer.png HTTP/1.1" 200 OK
-INFO:     127.0.0.1:64094 - "POST /api/generate HTTP/1.1" 200 OK
-INFO:     127.0.0.1:64100 - "GET /outputs/ab404377-15d3-4bcd-8b2a-4dd61c9093c5/preview.png HTTP/1.1" 200 OK
-INFO:     127.0.0.1:64380 - "POST /api/generate HTTP/1.1" 200 OK
-INFO:     127.0.0.1:64382 - "GET /outputs/afd5cbc5-cc49-4bd5-9079-905b75080923/answer.png HTTP/1.1" 200 OK
+ERROR:    [Errno 48] error while attempting to bind on address ('127.0.0.1', 8000): address already in use
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.

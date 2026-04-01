@@ -277,6 +277,43 @@ export default function CreatePuzzle() {
         </div>
 
       </form>
+
+      {/* How it Works Section */}
+      <div className="mt-12 bg-white p-8 rounded-3xl shadow-sm border border-neutral-100">
+        <h2 className="text-2xl font-bold mb-6 text-neutral-900">What Happens Next?</h2>
+        <div className="space-y-6">
+          <div className="flex gap-4">
+            <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold shrink-0 text-lg">1</div>
+            <div>
+              <h3 className="font-bold text-lg text-neutral-800">Preview & Instant Download</h3>
+              <p className="text-neutral-600 leading-relaxed mt-1">After generating, you'll see a free preview. Once unlocked, you'll instantly download a high-resolution PDF document (4 pages) containing your custom pattern.</p>
+            </div>
+          </div>
+          
+          <div className="flex gap-4">
+            <div className="w-10 h-10 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center font-bold shrink-0 text-lg">2</div>
+            <div>
+              <h3 className="font-bold text-lg text-neutral-800">Print at Home</h3>
+              <p className="text-neutral-600 leading-relaxed mt-1">Print your custom kit on standard A4, A3, or A5 paper using any home or local printer.</p>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <div className="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold shrink-0 text-lg">3</div>
+            <div>
+              <h3 className="font-bold text-lg text-neutral-800">Create Your Artwork</h3>
+              <p className="text-neutral-600 leading-relaxed mt-1">Follow the included instructions and fill in the grid using any marker, pen, or paint. Watch your custom photo slowly come to life!</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 p-5 bg-neutral-50 rounded-2xl border border-neutral-200">
+          <p className="text-sm text-neutral-600 flex gap-3 items-start">
+            <span className="text-amber-500 text-xl leading-none">⏱️</span>
+            <span><strong className="text-neutral-800">Art-Therapy Disclaimer:</strong> This is a highly detailed, relaxing DIY art project. Depending on the complexity of your photo, filling in the dots/grids can take a few hours to complete. It's designed to be a mindful, immersive, and highly rewarding experience!</span>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
